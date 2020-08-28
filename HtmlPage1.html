@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function meow() {
+            var url = 'http://localhost:63180/api/shalom?email_address=i&pass=i';
+            console.log("before");
+               fetch(url ,
+                {
+                    method: 'GET', // 'GET', 'POST', 'PUT', 'DELETE', etc.
+                    headers: new Headers({
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }),
+                }) // Call the fetch function passing the url of the API as a parameter
+                .then((resp) => resp.json()) // Transform the data into json
+                .then(function (data) {
+                    console.log("meow");
+                    console.log(data);
+                    if (data != null) {
+                        console.log(data.Email);
+                        console.log(data.Password);
+                        returnedObj = data;
+                    }
+                    else {
+                        console.log('wrong email or password!');
+                        returnedObj = null;
+                    }
+                    return returnedObj;
+                })
+                .catch(function (err) {
+                    alert(err);
+                });
+
+            // return returnedObj;
+        }
+
+        
+    </script>
+</head>
+<body>
+    <button onclick="meow()">click</button>
+</body>
+</html>
